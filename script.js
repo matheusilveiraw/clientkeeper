@@ -26,6 +26,8 @@ function checarLogado() {
       alert("Você precisa logar no sistema!");
       window.location.href = "index.html";
     }
+  } else { 
+    window.location.href = "acesso_sistema.html";
   }
 }
 
