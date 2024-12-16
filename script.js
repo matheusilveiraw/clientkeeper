@@ -15,20 +15,52 @@ function deslogarSistema() {
 }
 
 function checarLogado() {
-  if (
-    !(
+  if (localStorage.getItem("usuarioLogado") == "true") {
+    if (
       window.location.pathname.includes("index.html") ||
       window.location.pathname.includes("cadastro.html") ||
       window.location.pathname.includes("configuracoes.html")
-    )
-  ) {
-    if (localStorage.getItem("usuarioLogado") == "false") {
-      alert("Você precisa logar no sistema!");
+    ) {
+      window.location.href = "acesso_sistema.html";
+    }
+  } else {
+    if (
+      window.location.pathname.includes("acesso_sistema.html") ||
+      window.location.pathname.includes("cadastrar_cliente.html") ||
+      window.location.pathname.includes("cadastrar_enderecos.html") ||
+      window.location.pathname.includes("clientes.html") ||
+      window.location.pathname.includes("enderecos.html")
+    ) {
+      alert('Não está logado!')
       window.location.href = "index.html";
     }
-  } else { 
-    window.location.href = "acesso_sistema.html";
   }
+
+  // if (
+  //   window.location.pathname.includes("index.html") ||
+  //   window.location.pathname.includes("cadastro.html") ||
+  //   window.location.pathname.includes("configuracoes.html") &&
+  //   localStorage.getItem("usuarioLogado") == "true"
+  // ) {
+  //   alert('ok 1')
+  // }
+  // else {
+  //tá logado e tentou ir nas páginas pré-login
+  // window.location.href = "acesso_sistema.html";
+  // }
+
+  // if (
+  //   window.location.pathname.includes("acesso_sistema.html") ||
+  //   window.location.pathname.includes("cadastrar_cliente.html") ||
+  //   window.location.pathname.includes("cadastrar_enderecos.html") ||
+  //   window.location.pathname.includes("clientes.html") ||
+  //   window.location.pathname.includes("enderecos.html") &&
+  //   localStorage.getItem("usuarioLogado") == "true"
+  // ) {
+  //   alert('ok')
+  // } else {
+  //   alert('está deslogado')
+  // }
 }
 
 function limparBanco() {
@@ -215,7 +247,7 @@ function carregarListaEnderecos() {
       const e = clientes[j];
 
       //id do endereço tem que ser igual ao id do lugar, aí a gente bota o id do cliente
-      //element.id = id do endereço 
+      //element.id = id do endereço
       //
       if (e.endereco_principal == element.id) {
         tdCliente.textContent = e.id;
@@ -350,14 +382,14 @@ function validarDadosSelectsEnderecos(nomeEnderecoClasse) {
   );
   todosEnderecosSendoUsados = [];
 
-    if (endereco == 0) {
-      if (nomeEnderecoClasse != 'enderecoPrincipal') {
-        return 0;      
-      }
-      errosEndereco.push("Nenhum valor foi selecionado!");
-      document.getElementById("erros" + nomeEnderecoClasse).innerHTML =
-        errosEndereco.join("<br>");
-      return 1;
+  if (endereco == 0) {
+    if (nomeEnderecoClasse != "enderecoPrincipal") {
+      return 0;
+    }
+    errosEndereco.push("Nenhum valor foi selecionado!");
+    document.getElementById("erros" + nomeEnderecoClasse).innerHTML =
+      errosEndereco.join("<br>");
+    return 1;
   }
 
   for (let i = 0; i < enderecosPrincipaisEmUso.length; i++) {
