@@ -218,6 +218,20 @@ function carregarListaEnderecos() {
     tdPais.textContent = element.pais;
     tdPais.classList.add("esconde-pequeno");
 
+    const tdEditarBtn = document.createElement("td");
+    
+    const btnEditar = document.createElement("button");
+    btnEditar.textContent = "Editar"; 
+    btnEditar.className = "btn btn-primary"; 
+
+    tdEditarBtn.appendChild(btnEditar);
+
+    
+    // Opcional: Adicione um evento ao botão
+    btnEditar.addEventListener("click", function () {
+        alert("Botão Editar clicado!");
+    });
+
     const tdCliente = document.createElement("td");
 
     for (let j = 0; j < clientes.length; j++) {
@@ -247,6 +261,8 @@ function carregarListaEnderecos() {
     tr.appendChild(tdEstado);
     tr.appendChild(tdPais);
     tr.appendChild(tdCliente);
+    tr.appendChild(tdEditarBtn);
+
 
     corpoListaEnderecos.appendChild(tr);
   }
