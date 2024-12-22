@@ -35,32 +35,6 @@ function checarLogado() {
       window.location.href = "index.html";
     }
   }
-
-  // if (
-  //   window.location.pathname.includes("index.html") ||
-  //   window.location.pathname.includes("cadastro.html") ||
-  //   window.location.pathname.includes("configuracoes.html") &&
-  //   localStorage.getItem("usuarioLogado") == "true"
-  // ) {
-  //   alert('ok 1')
-  // }
-  // else {
-  //tá logado e tentou ir nas páginas pré-login
-  // window.location.href = "acesso_sistema.html";
-  // }
-
-  // if (
-  //   window.location.pathname.includes("acesso_sistema.html") ||
-  //   window.location.pathname.includes("cadastrar_cliente.html") ||
-  //   window.location.pathname.includes("cadastrar_enderecos.html") ||
-  //   window.location.pathname.includes("clientes.html") ||
-  //   window.location.pathname.includes("enderecos.html") &&
-  //   localStorage.getItem("usuarioLogado") == "true"
-  // ) {
-  //   alert('ok')
-  // } else {
-  //   alert('está deslogado')
-  // }
 }
 
 function limparBanco() {
