@@ -184,6 +184,11 @@ function validarDadosEndereco() {
   }
 }
 
+function editarCadastroEndereco() { 
+  //preciso pegar o id e mandar para a outra página e lá puxar os dados
+  alert('funfou')
+}
+
 function carregarListaEnderecos() {
   const enderecos = alasql("SELECT * FROM cadastros_enderecos");
   const clientes = alasql("SELECT * FROM cadastros_clientes");
@@ -191,46 +196,43 @@ function carregarListaEnderecos() {
 
   corpoListaEnderecos.innerHTML = "";
 
-  for (let index = 0; index < enderecos.length; index++) {
-    const element = enderecos[index];
+  for (let i = 0; i < enderecos.length; i++) {
+    const endereco = enderecos[i];
 
     const tr = document.createElement("tr");
 
     const tdCep = document.createElement("td");
-    cepFormatado = element.cep.toString().replace(/\D/g, "");
+    cepFormatado = endereco.cep.toString().replace(/\D/g, "");
     cepFormatado = cepFormatado.replace(/(\d{5})(\d{3})/, "$1-$2");
     tdCep.textContent = cepFormatado;
 
     const tdRua = document.createElement("td");
-    tdRua.textContent = element.rua;
+    tdRua.textContent = endereco.rua;
     tdRua.classList.add("esconde-pequeno");
 
     const tdBairro = document.createElement("td");
-    tdBairro.textContent = element.bairro;
+    tdBairro.textContent = endereco.bairro;
 
     const tdCidade = document.createElement("td");
-    tdCidade.textContent = element.cidade;
+    tdCidade.textContent = endereco.cidade;
 
     const tdEstado = document.createElement("td");
-    tdEstado.textContent = element.estado;
+    tdEstado.textContent = endereco.estado;
 
     const tdPais = document.createElement("td");
-    tdPais.textContent = element.pais;
+    tdPais.textContent = endereco.pais;
     tdPais.classList.add("esconde-pequeno");
 
     const tdEditarBtn = document.createElement("td");
     
     const btnEditar = document.createElement("button");
-    btnEditar.textContent = "Editar"; 
-    btnEditar.className = "btn btn-primary"; 
+    btnEditar.innerHTML = '<i data-feather="edit"></i>';    
+    btnEditar.className = "btn btn-warning btn-sm btn-lg"; 
+
+    btnEditar.addEventListener("click", editarCadastroEndereco);
+
 
     tdEditarBtn.appendChild(btnEditar);
-
-    
-    // Opcional: Adicione um evento ao botão
-    btnEditar.addEventListener("click", function () {
-        alert("Botão Editar clicado!");
-    });
 
     const tdCliente = document.createElement("td");
 
@@ -240,15 +242,15 @@ function carregarListaEnderecos() {
       //id do endereço tem que ser igual ao id do lugar, aí a gente bota o id do cliente
       //element.id = id do endereço
       //
-      if (e.endereco_principal == element.id) {
+      if (e.endereco_principal == endereco.id) {
         tdCliente.textContent = e.id;
       }
 
-      if (e.endereco_alternativo1 == element.id) {
+      if (e.endereco_alternativo1 == endereco.id) {
         tdCliente.textContent = e.id;
       }
 
-      if (e.endereco_alternativo2 == element.id) {
+      if (e.endereco_alternativo2 == endereco.id) {
         tdCliente.textContent = e.id;
       }
     }
@@ -266,6 +268,8 @@ function carregarListaEnderecos() {
 
     corpoListaEnderecos.appendChild(tr);
   }
+
+  feather.replace();
 }
 
 function carregarListaClientes() {
