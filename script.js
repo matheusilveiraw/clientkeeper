@@ -1,13 +1,16 @@
-checarLogado();
-criarBanco();
 
 document.addEventListener("DOMContentLoaded", function () {
+  feather.replace();
+
   if (window.location.pathname.includes("cadastrar_cliente.html")) {
     carregarEnderecoPrincipalSelect("enderecoPrincipal");
     carregarEnderecoPrincipalSelect("enderecoAlternativo1");
     carregarEnderecoPrincipalSelect("enderecoAlternativo2");
   }
 });
+
+checarLogado();
+criarBanco();
 
 function deslogarSistema() {
   localStorage.setItem("usuarioLogado", false);
