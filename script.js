@@ -7,10 +7,23 @@ document.addEventListener("DOMContentLoaded", function () {
     carregarEnderecoPrincipalSelect("enderecoAlternativo1");
     carregarEnderecoPrincipalSelect("enderecoAlternativo2");
   }
+
+  if (window.location.pathname.includes("cadastrar_enderecos.html")) {
+      carregarDadosParaEdicao();
+  }
 });
 
 checarLogado();
 criarBanco();
+
+function carregarDadosParaEdicao() { 
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get('id'); 
+  alert("O ID recuperado é: " + id);
+  
+  const endereco = alasql("SELECT * FROM cadastros_enderecos WHERE ID = ?", [id]);
+
+}
 
 function deslogarSistema() {
   localStorage.setItem("usuarioLogado", false);
@@ -184,11 +197,6 @@ function validarDadosEndereco() {
   }
 }
 
-function editarCadastroEndereco() { 
-  //preciso pegar o id e mandar para a outra página e lá puxar os dados
-  alert('funfou')
-}
-
 function carregarListaEnderecos() {
   const enderecos = alasql("SELECT * FROM cadastros_enderecos");
   const clientes = alasql("SELECT * FROM cadastros_clientes");
@@ -229,8 +237,11 @@ function carregarListaEnderecos() {
     btnEditar.innerHTML = '<i data-feather="edit"></i>';    
     btnEditar.className = "btn btn-warning btn-sm btn-lg"; 
 
-    btnEditar.addEventListener("click", editarCadastroEndereco);
+    btnEditar.addEventListener("click", editarCadastroEndereco.bind(null, endereco.id));
 
+    btnEditar.addEventListener("click", function () {
+      window.location.href = "cadastrar_enderecos.html?id=" + enderecoId; 
+    });
 
     tdEditarBtn.appendChild(btnEditar);
 
