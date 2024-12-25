@@ -237,10 +237,9 @@ function carregarListaEnderecos() {
     btnEditar.innerHTML = '<i data-feather="edit"></i>';    
     btnEditar.className = "btn btn-warning btn-sm btn-lg"; 
 
-    btnEditar.addEventListener("click", editarCadastroEndereco.bind(null, endereco.id));
-
     btnEditar.addEventListener("click", function () {
-      window.location.href = "cadastrar_enderecos.html?id=" + enderecoId; 
+      alert(endereco.id)
+      window.location.href = "cadastrar_enderecos.html?id=" + endereco.id; 
     });
 
     tdEditarBtn.appendChild(btnEditar);
