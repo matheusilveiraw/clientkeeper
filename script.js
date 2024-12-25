@@ -17,12 +17,18 @@ checarLogado();
 criarBanco();
 
 function carregarDadosParaEdicao() { 
+  criarBanco();
   const urlParams = new URLSearchParams(window.location.search);
-  const id = urlParams.get('id'); 
-  alert("O ID recuperado é: " + id);
+  const id = parseInt(urlParams.get('id'), 10); 
   
-  const endereco = alasql("SELECT * FROM cadastros_enderecos WHERE ID = ?", [id]);
+  const endereco = alasql("SELECT * FROM cadastros_enderecos WHERE id = ?", [id])[0];
 
+  document.getElementById('cep').value = endereco.cep;
+  document.getElementById('cidade').value = endereco.cidade;
+  document.getElementById('estado').value = endereco.estado;
+  document.getElementById('bairro').value = endereco.bairro;
+  document.getElementById('pais').value = endereco.pais;
+  document.getElementById('rua').value = endereco.rua;
 }
 
 function deslogarSistema() {
