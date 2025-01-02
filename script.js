@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
   feather.replace();
 
@@ -244,7 +243,6 @@ function carregarListaEnderecos() {
     btnEditar.className = "btn btn-warning btn-sm btn-lg"; 
 
     btnEditar.addEventListener("click", function () {
-      alert(endereco.id)
       window.location.href = "cadastrar_enderecos.html?id=" + endereco.id; 
     });
 
